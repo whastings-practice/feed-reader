@@ -1,9 +1,9 @@
-import React from 'react';
+import { connect } from 'react-redux';
 
-export default class FeedsContainer extends React.Component {
-  render() {
-    return (
-      <h1>Feeds Page</h1>
-    );
-  }
-}
+import FeedsPage from './components/FeedsPage';
+
+export default connect(
+  (state) => ({
+    feeds: state.entities.feeds,
+  }),
+)(FeedsPage);

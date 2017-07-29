@@ -1,3 +1,5 @@
+import entitiesReducer from './entities/reducer';
+
 export default {
   currentRoute(state = 'home', action) {
     if (action.type.match(/^ROUTE_/)) {
@@ -5,5 +7,6 @@ export default {
       return routeName;
     }
     return state;
-  }
+  },
+  entities: entitiesReducer,
 };

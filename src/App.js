@@ -27,7 +27,6 @@ class App extends Component {
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/feeds">Feeds</Link></li>
-            <li><Link to="/feed">Feed</Link></li>
           </ul>
         </nav>
         <Container />
