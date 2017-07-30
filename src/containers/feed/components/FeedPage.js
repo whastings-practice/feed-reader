@@ -3,7 +3,7 @@ import React from 'react';
 export default function FeedPage(props) {
   const { feed } = props;
 
-  if (!feed.posts) {
+  if (!feed || !feed.posts) {
     return null;
   }
 

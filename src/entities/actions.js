@@ -16,13 +16,6 @@ export function requestFeeds() {
   };
 }
 
-export function receiveFeed(feed) {
-  return {
-    type: RECEIVE_FEED,
-    payload: feed,
-  };
-}
-
 export function requestFeed(id) {
   return {
     type: REQUEST_FEED,

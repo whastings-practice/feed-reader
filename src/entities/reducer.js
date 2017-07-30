@@ -1,20 +1,25 @@
 import { combineReducers } from 'redux';
-import { RECEIVE_FEEDS, RECEIVE_FEED } from './actions';
+import { RECEIVE_FEEDS } from './actions';
 
-function feedsReducer(state = [], action) {
+function feedsReducer(state = {}, action) {
   switch(action.type) {
     case RECEIVE_FEEDS:
-      return action.payload;
-    case RECEIVE_FEED:
-      const receivedFeed = action.payload;
-      return state.map((feed) => feed.id === receivedFeed.id ? receivedFeed : feed);
+      return { ...state, ...action.payload.feeds};
     default:
       return state;
   }
 }
 
-function postsReducer(state = [], action) {
-  return state;
+function postsReducer(state = {}, action) {
+  switch(action.type) {
+    case RECEIVE_FEEDS:
+      const { posts } = action.payload;
+      if (posts) {
+        return { ...state, ...posts };
+      }
+    default:
+      return state;
+  }
 }
 
 export default combineReducers({

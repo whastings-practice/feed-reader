@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'redux-first-router-link';
 
-export default function FeedsContainer(props) {
+export default function FeedsPage(props) {
   const { feeds } = props;
 
   return (

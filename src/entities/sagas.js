@@ -1,11 +1,15 @@
 import axios from 'axios';
 import { call, fork, put, takeLatest } from 'redux-saga/effects';
-import { REQUEST_FEED, REQUEST_FEEDS, receiveFeeds, receiveFeed } from './actions';
+import { normalize } from 'normalizr';
+
+import { REQUEST_FEED, REQUEST_FEEDS, receiveFeeds } from './actions';
+import { feedSchema, feedsSchema } from './schemas';
 
 function* loadFeeds() {
   yield takeLatest(REQUEST_FEEDS, function* () {
     const response = yield call(axios.get, '/api/feeds');
-    yield put(receiveFeeds(response.data));
+    const data = yield call(normalize, response.data, feedsSchema);
+    yield put(receiveFeeds(data.entities));
   });
 }
 
@@ -13,7 +17,8 @@ function* loadFeed() {
   yield takeLatest(REQUEST_FEED, function* (action) {
     const feedId = action.payload.id;
     const response = yield call(axios.get, `/api/feeds/${feedId}`);
-    yield put(receiveFeed(response.data));
+    const data = yield call(normalize, response.data, feedSchema);
+    yield put(receiveFeeds(data.entities));
   });
 }
 
