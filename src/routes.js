@@ -1,18 +1,7 @@
-import { requestFeeds, requestFeed } from './entities/actions';
+import { ROUTE_FEED, ROUTE_FEEDS, ROUTE_HOME } from './actions';
 
 export default {
-  ROUTE_HOME: '/',
-  ROUTE_FEEDS: {
-    path: '/feeds',
-    thunk(dispatch) {
-      dispatch(requestFeeds());
-    },
-  },
-  ROUTE_FEED: {
-    path: '/feeds/:id',
-    thunk(dispatch, getState) {
-      const { id } = getState().location.payload;
-      dispatch(requestFeed(id));
-    },
-  },
+  [ROUTE_HOME]: '/home',
+  [ROUTE_FEEDS]: '/feeds',
+  [ROUTE_FEED]: '/feeds/:id',
 };

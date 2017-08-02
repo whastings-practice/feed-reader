@@ -16,7 +16,10 @@ const containers = {
 
 class App extends Component {
   render() {
-    const Container = containers[this.props.routeName];
+    const { currentRoute, isLoading } = this.props;
+    const Container = containers[currentRoute];
+    const content = isLoading ? <strong>Loading...</strong> : <Container />;
+
     return (
       <div className="App">
         <div className="App-header">
@@ -29,7 +32,7 @@ class App extends Component {
             <li><Link to="/feeds">Feeds</Link></li>
           </ul>
         </nav>
-        <Container />
+        {content}
       </div>
     );
   }
@@ -37,6 +40,7 @@ class App extends Component {
 
 export default connect(
   (state) => ({
-    routeName: state.currentRoute,
+    currentRoute: state.currentRoute,
+    isLoading: state.isLoading,
   }),
 )(App);

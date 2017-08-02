@@ -13,9 +13,6 @@ export const getCurrentFeed = createSelector(
   (state) => state.entities.posts,
   (id, feeds, posts) => {
     const feed = feeds[id];
-    if (!feed || !feed.posts) {
-      return null;
-    }
     return {
       ...feed,
       posts: feed.posts.map((postId) => posts[postId]),

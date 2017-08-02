@@ -1,7 +1,9 @@
 import { fork } from 'redux-saga/effects';
 
-import entitiesSaga from './entities/sagas';
+import feedSaga from './containers/feed/sagas';
+import feedsSaga from './containers/feeds/sagas';
 
 export default function* rootSaga() {
-  yield fork(entitiesSaga);
+  yield fork(feedSaga);
+  yield fork(feedsSaga);
 }
