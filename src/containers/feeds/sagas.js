@@ -1,16 +1,11 @@
-import { call, fork, put, takeLatest } from 'redux-saga/effects';
+import { fork } from 'redux-saga/effects';
 
-import { ROUTE_FEEDS, renderLoading, renderRoute } from '../../actions';
+import { createRouteLoaderSaga } from '../../utils/sagaUtils';
+import { ROUTE_FEEDS } from '../../actions';
 import { loadFeeds } from '../../entities/sagas';
 
-function* load() {
-  yield takeLatest(ROUTE_FEEDS, function* () {
-    yield put(renderLoading());
-    yield call(loadFeeds);
-    yield put(renderRoute('feeds'));
-  });
-}
+const feedsRouteLoader = createRouteLoaderSaga(ROUTE_FEEDS, 'feeds', loadFeeds);
 
 export default function* feedSaga() {
-  yield fork(load);
+  yield fork(feedsRouteLoader);
 }

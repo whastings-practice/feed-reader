@@ -1,11 +1,11 @@
 import entitiesReducer from './entities/reducer';
 
-import { RENDER_LOADING, RENDER_ROUTE } from './actions';
+import { SHOW_ROUTE, SWITCH_ROUTE } from './actions';
 
 export default {
   currentRoute(state = 'home', action) {
     switch(action.type) {
-      case RENDER_ROUTE:
+      case SWITCH_ROUTE:
         return action.payload.routeName;
     }
 
@@ -13,9 +13,9 @@ export default {
   },
   isLoading(state = false, action) {
     switch(action.type) {
-      case RENDER_LOADING:
+      case SWITCH_ROUTE:
         return true;
-      case RENDER_ROUTE:
+      case SHOW_ROUTE:
         return false;
     }
 
