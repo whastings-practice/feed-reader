@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { RECEIVE_FEEDS } from './actions';
+import { RECEIVE_FEEDS, RECEIVE_POSTS } from './actions';
 
 function feedsReducer(state = {}, action) {
   switch(action.type) {
@@ -12,11 +12,9 @@ function feedsReducer(state = {}, action) {
 
 function postsReducer(state = {}, action) {
   switch(action.type) {
-    case RECEIVE_FEEDS:
+    case RECEIVE_POSTS:
       const { posts } = action.payload;
-      if (posts) {
-        return { ...state, ...posts };
-      }
+      return { ...state, ...posts };
     default:
       return state;
   }

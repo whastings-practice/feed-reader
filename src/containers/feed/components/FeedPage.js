@@ -8,8 +8,8 @@ export default function FeedPage(props) {
       <h2>{feed.title}</h2>
       <ul>
         {feed.posts.map((post) => (
-          <li key={post.url}>
-            <a href={post.url}>{post.title}</a>
+          <li key={post.link}>
+            <a href={post.link} target="_blank" rel="noopener">{post.title}</a>
           </li>
         ))}
       </ul>
