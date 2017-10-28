@@ -15,7 +15,7 @@ export const getCurrentFeed = createSelector(
     const feed = feeds[id];
     const postsForFeed = Object.keys(posts).reduce((feedPosts, postId) => {
       const post = posts[postId];
-      if (post.feed_id === feed.id) {
+      if (post.feedId === feed.id) {
         feedPosts.push(post);
       }
       return feedPosts;
