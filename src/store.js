@@ -7,11 +7,16 @@ import createHistory from 'history/createBrowserHistory';
 import reducers from './reducers';
 import rootSaga from './sagas';
 
+const routerOptions = {
+  initialDispatch: false,
+};
+
 export default function createStore() {
   const history = createHistory();
   const connectedRoutes = connectRoutes(
     history,
     routes,
+    routerOptions,
   );
   const sagaMiddleware = createSagaMiddleware();
 
@@ -22,6 +27,7 @@ export default function createStore() {
   const store = createReduxStore(rootReducer, enhancers);
 
   sagaMiddleware.run(rootSaga);
+  connectedRoutes.initialDispatch();
 
   return store;
 }
