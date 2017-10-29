@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Link from 'redux-first-router-link';
 import Loadable from 'react-loadable';
 import { connect } from 'react-redux';
-import logo from './logo.svg';
 import './App.css';
+
+import Page from './components/Page';
 
 function loadContainer(name) {
   return import(`./containers/${name}/container`);
@@ -38,19 +38,9 @@ class App extends Component {
     const Container = containers[currentRoute];
 
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <nav>
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/feeds">Feeds</Link></li>
-          </ul>
-        </nav>
+      <Page>
         <Container isLoading={isLoading} />
-      </div>
+      </Page>
     );
   }
 }
