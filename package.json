@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "bootstrap": "4.0.0-beta.2",
     "express": "^4.15.3",
     "history": "^4.6.3",
     "normalizr": "^3.2.3",
@@ -19,13 +20,12 @@
     "react-loadable": "^4.0.4",
     "react-redux": "^5.0.5",
     "react-scripts": "1.0.10",
+    "reactstrap": "^4.8.0",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-first-router": "^1.8.9",
     "redux-first-router-link": "^1.1.1",
     "redux-saga": "^0.15.6",
-    "reselect": "^3.0.1",
-    "semantic-ui-css": "^2.2.12",
-    "semantic-ui-react": "^0.75.1"
+    "reselect": "^3.0.1"
   }
 }
