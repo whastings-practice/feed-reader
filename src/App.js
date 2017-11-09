@@ -6,7 +6,7 @@ import './App.css';
 import Page from './components/Page';
 
 function loadContainer(name) {
-  return import(`./containers/${name}/container`);
+  return import(`./containers/${name}/${name}Container`);
 }
 
 function LoadingScreen() {
@@ -27,9 +27,9 @@ function createContainerLoadable(name) {
 }
 
 const containers = {
-  home: createContainerLoadable('home'),
-  feed: createContainerLoadable('feed'),
-  feeds: createContainerLoadable('feeds'),
+  home: createContainerLoadable('Home'),
+  feed: createContainerLoadable('Feed'),
+  feeds: createContainerLoadable('Feeds'),
 };
 
 class App extends Component {
