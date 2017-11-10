@@ -1,4 +1,7 @@
 import { createSelector } from 'reselect';
+import { denormalize } from 'normalizr';
+
+import { feedSchema } from './schemas';
 
 export const getFeeds = createSelector(
   (state) => state.entities.feeds,
@@ -13,16 +16,6 @@ export const getCurrentFeed = createSelector(
   (state) => state.entities.posts,
   (id, feeds, posts) => {
     const feed = feeds[id];
-    const postsForFeed = Object.keys(posts).reduce((feedPosts, postId) => {
-      const post = posts[postId];
-      if (post.feedId === feed.id) {
-        feedPosts.push(post);
-      }
-      return feedPosts;
-    }, []);
-    return {
-      ...feed,
-      posts: postsForFeed,
-    };
-  }
+    return denormalize(feed, feedSchema, { posts });
+  },
 );
