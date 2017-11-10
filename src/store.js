@@ -6,6 +6,7 @@ import routes from './routes';
 import createHistory from 'history/createBrowserHistory';
 import reducers from './reducers';
 import rootSaga from './sagas';
+import { BOOT_APP } from './actions';
 
 const routerOptions = {
   initialDispatch: false,
@@ -27,6 +28,7 @@ export default function createStore() {
   const store = createReduxStore(rootReducer, enhancers);
 
   sagaMiddleware.run(rootSaga);
+  store.dispatch({ type: BOOT_APP });
   connectedRoutes.initialDispatch();
 
   return store;

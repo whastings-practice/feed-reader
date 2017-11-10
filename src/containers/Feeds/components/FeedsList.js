@@ -1,18 +1,16 @@
 import React from 'react';
 import Link from 'redux-first-router-link';
 
-export default function FeedsPage(props) {
+export default function FeedsList(props) {
   const { feeds } = props;
 
   return (
     <section>
-      <h1>Feeds Page</h1>
+      <h2>Feeds</h2>
       <ul>
         {feeds.map((feed) => (
           <li key={feed.id}>
-            <strong>Title:</strong> {feed.title} |
-            <string>URL:</string> {feed.url} |
-            (<Link to={`/feeds/${feed.id}`}>View Posts</Link>)
+            <Link to={`/feeds/${feed.id}`}>{feed.title}</Link>
           </li>
         ))}
       </ul>

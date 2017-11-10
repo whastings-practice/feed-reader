@@ -29,17 +29,16 @@ function createContainerLoadable(name) {
 const containers = {
   home: createContainerLoadable('Home'),
   feed: createContainerLoadable('Feed'),
-  feeds: createContainerLoadable('Feeds'),
 };
 
 class App extends Component {
   render() {
-    const { currentRoute, isLoading } = this.props;
+    const { currentRoute, isAppBooting, isRouteLoading } = this.props;
     const Container = containers[currentRoute];
 
     return (
       <Page>
-        <Container isLoading={isLoading} />
+        <Container isLoading={isAppBooting || isRouteLoading} />
       </Page>
     );
   }
@@ -48,6 +47,7 @@ class App extends Component {
 export default connect(
   (state) => ({
     currentRoute: state.currentRoute,
-    isLoading: state.isLoading,
+    isAppBooting: state.isAppBooting,
+    isRouteLoading: state.isRouteLoading,
   }),
 )(App);
