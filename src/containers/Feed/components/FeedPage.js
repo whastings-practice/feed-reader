@@ -1,18 +1,23 @@
 import React from 'react';
 
+import ListGroup from 'reactstrap/lib/ListGroup';
+import ListGroupItem from 'reactstrap/lib/ListGroupItem';
+
+import Post from './Post';
+
 export default function FeedPage(props) {
   const { feed } = props;
 
   return (
     <section>
       <h2>{feed.title}</h2>
-      <ul>
+      <ListGroup>
         {feed.posts.map((post) => (
-          <li key={post.link}>
-            <a href={post.link} target="_blank" rel="noopener">{post.title}</a>
-          </li>
+          <ListGroupItem key={post.link}>
+            <Post post={post} />
+          </ListGroupItem>
         ))}
-      </ul>
+      </ListGroup>
     </section>
   );
 }
