@@ -1,5 +1,5 @@
 import React from 'react';
-import { withFormik } from 'formik';
+import { Formik } from 'formik';
 
 import Button from 'reactstrap/lib/Button';
 import FormGroup from 'reactstrap/lib/FormGroup';
@@ -10,12 +10,12 @@ import ModalHeader from 'reactstrap/lib/ModalHeader';
 import ModalBody from 'reactstrap/lib/ModalBody';
 import ModalFooter from 'reactstrap/lib/ModalFooter';
 
-function AddFeedForm(props) {
-  const { handleChange, handleSubmit, values } = props;
+function renderForm(props) {
+  const { handleChange, handleSubmit, onClose, values } = props;
 
   return (
-    <Modal isOpen={props.isOpen} toggle={props.onClose}>
-      <ModalHeader toggle={props.onClose}>Add Feed</ModalHeader>
+    <Modal isOpen={true} toggle={onClose}>
+      <ModalHeader toggle={onClose}>Add Feed</ModalHeader>
       <form onSubmit={handleSubmit}>
         <ModalBody>
           <FormGroup>
@@ -32,7 +32,7 @@ function AddFeedForm(props) {
         </ModalBody>
         <ModalFooter>
           <Button color="primary">Add</Button>
-          <Button color="Secondary" onClick={props.onClose} type="button">
+          <Button color="Secondary" onClick={onClose} type="button">
             Cancel
           </Button>
         </ModalFooter>
@@ -41,9 +41,16 @@ function AddFeedForm(props) {
   );
 }
 
-export default withFormik({
-  mapPropsToValues: () => ({
-    url: '',
-  }),
-  handleSubmit: (values, { props }) => props.onSubmit(values.url),
-})(AddFeedForm);
+export default function AddFeedForm(props) {
+  if (!props.isOpen) {
+    return null;
+  }
+
+  return (
+    <Formik
+      initialValues={{ url: '' }}
+      onSubmit={(values) => props.onSubmit(values.url)}
+      render={(fProps) => renderForm({ ...fProps, ...props })}
+    />
+  );
+}
