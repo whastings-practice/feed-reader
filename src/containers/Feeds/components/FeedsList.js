@@ -1,6 +1,10 @@
 import React from 'react';
 import Link from 'redux-first-router-link';
 
+import Button from 'reactstrap/lib/Button';
+
+import AddFeedForm from './AddFeedForm';
+
 export default function FeedsList(props) {
   const { feeds } = props;
 
@@ -14,6 +18,12 @@ export default function FeedsList(props) {
           </li>
         ))}
       </ul>
+      <Button color="primary" onClick={props.onOpenAddFeed}>Add Feed</Button>
+      <AddFeedForm
+        isOpen={props.isAddFeedOpen}
+        onClose={props.onCloseAddFeed}
+        onSubmit={props.onSubmitAddFeed}
+      />
     </section>
   );
 }

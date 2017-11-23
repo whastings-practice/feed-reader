@@ -1,4 +1,5 @@
 import entitiesReducer from './entities/reducer';
+import feedsReducer from './containers/Feeds/feedsReducer';
 
 import { BOOT_APP, SHOW_APP, SHOW_ROUTE, SWITCH_ROUTE } from './actions';
 
@@ -32,4 +33,5 @@ export default {
     }
   },
   entities: entitiesReducer,
+  feeds: feedsReducer,
 };
