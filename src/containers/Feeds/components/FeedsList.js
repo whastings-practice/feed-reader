@@ -21,6 +21,7 @@ export default function FeedsList(props) {
       <Button color="primary" onClick={props.onOpenAddFeed}>Add Feed</Button>
       <AddFeedForm
         isOpen={props.isAddFeedOpen}
+        isSubmitting={props.isAddFeedSubmitting}
         onClose={props.onCloseAddFeed}
         onSubmit={props.onSubmitAddFeed}
       />

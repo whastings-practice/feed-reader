@@ -10,8 +10,10 @@ import ModalHeader from 'reactstrap/lib/ModalHeader';
 import ModalBody from 'reactstrap/lib/ModalBody';
 import ModalFooter from 'reactstrap/lib/ModalFooter';
 
+import LoadingSpinner from '../../../components/LoadingSpinner';
+
 function renderForm(props) {
-  const { handleChange, handleSubmit, onClose, values } = props;
+  const { handleChange, handleSubmit, onClose, isSubmitting, values } = props;
 
   return (
     <Modal isOpen={true} toggle={onClose}>
@@ -26,13 +28,15 @@ function renderForm(props) {
               type="url"
               onChange={handleChange}
               value={values.url}
+              disabled={isSubmitting}
               required
             />
           </FormGroup>
         </ModalBody>
         <ModalFooter>
-          <Button color="primary">Add</Button>
-          <Button color="Secondary" onClick={onClose} type="button">
+          {isSubmitting && <LoadingSpinner />}
+          <Button color="primary" disabled={isSubmitting}>Add</Button>
+          <Button color="Secondary" onClick={onClose} type="button" disabled={isSubmitting}>
             Cancel
           </Button>
         </ModalFooter>

@@ -8,6 +8,7 @@ export default connect(
   (state) => ({
     feeds: getFeeds(state),
     isAddFeedOpen: state.feeds.isAddFeedOpen,
+    isAddFeedSubmitting: state.feeds.isAddFeedSubmitting,
   }),
   {
     onCloseAddFeed: closeAddFeed,

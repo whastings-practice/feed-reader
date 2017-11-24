@@ -1,12 +1,19 @@
 import { call, fork, put, takeLatest } from 'redux-saga/effects';
 
-import { SUBMIT_ADD_FEED, closeAddFeed } from './feedsActions';
+import {
+  SUBMIT_ADD_FEED,
+  closeAddFeed,
+  startAddFeedSubmitting,
+  stopAddFeedSubmitting
+} from './feedsActions';
 import { createFeed, loadFeeds } from '../../entities/sagas';
 
 function* addFeedSaga() {
   yield takeLatest(SUBMIT_ADD_FEED, function* (action) {
+    yield put(startAddFeedSubmitting());
     yield call(createFeed, action.payload.url);
     yield put(closeAddFeed());
+    yield put(stopAddFeedSubmitting());
   });
 }
 
