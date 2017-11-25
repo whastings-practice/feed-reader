@@ -6,15 +6,16 @@ import Col from 'reactstrap/lib/Col';
 import Navbar from 'reactstrap/lib/Navbar';
 import NavbarBrand from 'reactstrap/lib/NavbarBrand';
 
-import FeedsContainer from '../containers/Feeds/FeedsContainer';
+import styles from './Page.module.css';
+import FeedsContainer from '../../containers/Feeds/FeedsContainer';
 
 export default function Page(props) {
   return (
     <div>
-      <Navbar>
+      <Navbar className={styles.navContainer}>
         <Container>
           <NavbarBrand tag="h1">
-            <Link to="/">Read &apos;Dem Feeds!</Link>
+            <Link to="/" className={styles.brandLink}>Read &apos;Dem Feeds!</Link>
           </NavbarBrand>
         </Container>
       </Navbar>

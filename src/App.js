@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Loadable from 'react-loadable';
 import { connect } from 'react-redux';
-import './App.css';
 
-import Page from './components/Page';
+import Page from './components/Page/Page';
 
 function loadContainer(name) {
   return import(`./containers/${name}/${name}Container`);
