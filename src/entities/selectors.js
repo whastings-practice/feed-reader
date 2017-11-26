@@ -3,6 +3,8 @@ import { denormalize } from 'normalizr';
 
 import { feedSchema } from './schemas';
 
+export const getEntityErrors = (state) => state.entities.errors;
+
 export const getFeeds = createSelector(
   (state) => state.entities.feeds,
   (feeds) => Object.keys(feeds)

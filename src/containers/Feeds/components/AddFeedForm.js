@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik } from 'formik';
 
+import Alert from 'reactstrap/lib/Alert';
 import Button from 'reactstrap/lib/Button';
 import FormGroup from 'reactstrap/lib/FormGroup';
 import Label from 'reactstrap/lib/Label';
@@ -10,16 +11,26 @@ import ModalHeader from 'reactstrap/lib/ModalHeader';
 import ModalBody from 'reactstrap/lib/ModalBody';
 import ModalFooter from 'reactstrap/lib/ModalFooter';
 
+import Autofocus from '../../../components/Autofocus';
 import LoadingSpinner from '../../../components/LoadingSpinner/LoadingSpinner';
 
 function renderForm(props) {
-  const { handleChange, handleSubmit, onClose, isSubmitting, values } = props;
+  const { errors, handleChange, handleSubmit, onClose, isSubmitting, values } = props;
+
+  const urlError = errors && errors.url;
 
   return (
     <Modal isOpen={true} toggle={onClose}>
       <ModalHeader toggle={onClose}>Add Feed</ModalHeader>
       <form onSubmit={handleSubmit}>
         <ModalBody>
+          {errors &&
+            <Autofocus>
+              <Alert color="danger">
+                Adding feed failed.
+              </Alert>
+            </Autofocus>
+          }
           <FormGroup>
             <Label htmlFor="feed-url-input">URL:</Label>
             <Input
@@ -29,8 +40,14 @@ function renderForm(props) {
               onChange={handleChange}
               value={values.url}
               disabled={isSubmitting}
+              className={urlError ? 'is-invalid' : ''}
+              aria-invalid={!!urlError}
+              aria-describedby="feed-url-input-desc"
               required
             />
+            <div id="feed-url-input-desc" className="invalid-feedback">
+              {urlError}
+            </div>
           </FormGroup>
         </ModalBody>
         <ModalFooter>

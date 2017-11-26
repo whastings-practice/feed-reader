@@ -1,5 +1,22 @@
 import { combineReducers } from 'redux';
-import { RECEIVE_FEEDS, RECEIVE_FEED, RECEIVE_POSTS } from './actions';
+import {
+  CLEAR_ERRORS,
+  RECEIVE_ERRORS,
+  RECEIVE_FEEDS,
+  RECEIVE_FEED,
+  RECEIVE_POSTS,
+} from './actions';
+
+function errorsReducer(state = null, action) {
+  switch(action.type) {
+    case CLEAR_ERRORS:
+      return null;
+    case RECEIVE_ERRORS:
+      return { ...action.payload };
+    default:
+      return state;
+  }
+}
 
 function feedsReducer(state = {}, action) {
   switch(action.type) {
@@ -23,6 +40,7 @@ function postsReducer(state = {}, action) {
 }
 
 export default combineReducers({
+  errors: errorsReducer,
   feeds: feedsReducer,
   posts: postsReducer,
 });

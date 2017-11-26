@@ -10,13 +10,22 @@ module Api
 
     def create
       feed_data = FeedFetcher.fetch_feed(feed_params[:url])
+
       feed = Feed.new(feed_data[:feed])
       feed_data[:posts].each { |post_data| feed.posts.build(post_data) }
+
       if feed.save
         render json: feed
       else
-        render json: { errors: feed.errors.full_messages }, status: 422
+        render json: { errors: feed.errors }, status: 422
       end
+    rescue RSS::NotWellFormedError
+      response = {
+        errors: {
+          url: 'This URL does not point to a valid feed',
+        },
+      }
+      render json: response, status: 422
     end
 
     private

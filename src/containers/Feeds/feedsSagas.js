@@ -11,8 +11,10 @@ import { createFeed, loadFeeds } from '../../entities/sagas';
 function* addFeedSaga() {
   yield takeLatest(SUBMIT_ADD_FEED, function* (action) {
     yield put(startAddFeedSubmitting());
-    yield call(createFeed, action.payload.url);
-    yield put(closeAddFeed());
+    const wasFeedCreated = yield call(createFeed, action.payload.url);
+    if (wasFeedCreated) {
+      yield put(closeAddFeed());
+    }
     yield put(stopAddFeedSubmitting());
   });
 }
