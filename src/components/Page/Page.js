@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Link from 'redux-first-router-link';
 import Container from 'reactstrap/lib/Container';
 import Row from 'reactstrap/lib/Row';
@@ -8,6 +9,10 @@ import NavbarBrand from 'reactstrap/lib/NavbarBrand';
 
 import styles from './Page.module.css';
 import FeedsContainer from '../../containers/Feeds/FeedsContainer';
+
+const propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default function Page(props) {
   return (
@@ -32,3 +37,5 @@ export default function Page(props) {
     </div>
   );
 }
+
+Page.propTypes = propTypes;

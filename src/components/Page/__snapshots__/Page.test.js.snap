@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Page /> it renders site nav, feeds list, and any children 1`] = `
+<div>
+  <Navbar
+    tag="nav"
+    toggleable={false}
+  >
+    <Container
+      tag="div"
+    >
+      <NavbarBrand
+        tag="h1"
+      >
+        <Connect(Link)
+          to="/"
+        >
+          Read 'Dem Feeds!
+        </Connect(Link)>
+      </NavbarBrand>
+    </Container>
+  </Navbar>
+  <Container
+    tag="div"
+  >
+    <Row
+      tag="div"
+    >
+      <Col
+        sm="3"
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+        xs="12"
+      >
+        <Connect(FeedsList) />
+      </Col>
+      <Col
+        sm="9"
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+        xs="12"
+      >
+        <div>
+          Child
+        </div>
+      </Col>
+    </Row>
+  </Container>
+</div>
+`;
