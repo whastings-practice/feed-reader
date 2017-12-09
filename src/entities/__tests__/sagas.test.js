@@ -1,7 +1,7 @@
-import axios from 'axios';
 import { call, put } from 'redux-saga/effects';
 import { normalize } from 'normalizr';
 
+import { request } from '../../utils/sagaUtils';
 import { receiveFeeds } from '../actions';
 import { feedsSchema } from '../schemas';
 import { loadFeeds } from '../sagas';
@@ -23,7 +23,7 @@ describe('Entities Sagas', () => {
       };
 
       const apiCallEffect = gen.next().value;
-      expect(apiCallEffect).toEqual(call(axios.get, '/api/feeds'));
+      expect(apiCallEffect).toEqual(request({ url: '/api/feeds' }));
 
       const normalizeEffect = gen.next(fakeResponse).value;
       expect(normalizeEffect).toEqual(call(normalize, fakeResponse.data, feedsSchema));

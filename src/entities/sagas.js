@@ -2,6 +2,7 @@ import axios from 'axios';
 import { call, put } from 'redux-saga/effects';
 import { normalize } from 'normalizr';
 
+import { request } from '../utils/sagaUtils';
 import { clearErrors, receiveErrors, receiveFeeds, receiveFeed } from './actions';
 import { feedsSchema, feedSchema } from './schemas';
 
@@ -21,7 +22,7 @@ export function* createFeed(url) {
 }
 
 export function* loadFeeds() {
-  const response = yield call(axios.get, '/api/feeds');
+  const response = yield request({ url: '/api/feeds' });
   const data = yield call(normalize, response.data, feedsSchema);
   yield put(receiveFeeds(data.entities));
 }
