@@ -3,7 +3,7 @@ import Link from 'redux-first-router-link';
 
 import Button from 'reactstrap/lib/Button';
 
-import AddFeedForm from './AddFeedForm';
+import AddFeedForm from './AddFeedForm/AddFeedForm';
 
 export default function FeedsList(props) {
   const { feeds } = props;

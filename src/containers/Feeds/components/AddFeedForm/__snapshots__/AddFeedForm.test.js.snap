@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddFeedForm when open it renders a form inside a modal 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop={true}
+  backdropTransitionTimeout={150}
+  fade={true}
+  isOpen={true}
+  keyboard={true}
+  modalTransitionTimeout={300}
+  toggle={[Function]}
+  zIndex={1050}
+>
+  <Formik
+    enableReinitialize={false}
+    initialValues={
+      Object {
+        "url": "",
+      }
+    }
+    isInitialValid={false}
+    onSubmit={[Function]}
+    render={[Function]}
+    validateOnBlur={true}
+    validateOnChange={true}
+  />
+</Modal>
+`;
+
+exports[`AddFeedForm when open it renders a form inside a modal 2`] = `
+<form
+  onSubmit={[Function]}
+>
+  <ModalHeader
+    tag="h4"
+    toggle={[Function]}
+    wrapTag="div"
+  >
+    Add Feed
+  </ModalHeader>
+  <ModalBody
+    tag="div"
+  >
+    <FormGroup
+      tag="div"
+    >
+      <Label
+        htmlFor="feed-url-input"
+        tag="label"
+      >
+        URL:
+      </Label>
+      <Input
+        aria-describedby="feed-url-input-desc"
+        aria-invalid={false}
+        className=""
+        disabled={false}
+        id="feed-url-input"
+        name="url"
+        onChange={[Function]}
+        required={true}
+        tag="p"
+        type="url"
+        value=""
+      />
+      <div
+        className="invalid-feedback"
+        id="feed-url-input-desc"
+      />
+    </FormGroup>
+  </ModalBody>
+  <ModalFooter
+    tag="div"
+  >
+    <Button
+      color="primary"
+      disabled={false}
+      tag="button"
+    >
+      Add
+    </Button>
+    <Button
+      className="qa-close-btn"
+      color="Secondary"
+      disabled={false}
+      onClick={[Function]}
+      tag="button"
+      type="button"
+    >
+      Cancel
+    </Button>
+  </ModalFooter>
+</form>
+`;
