@@ -14,16 +14,12 @@ describe('AddFeedForm', () => {
   let renderOutput;
   let wrapper;
 
-  function shallowRender() {
+  function render() {
     wrapper = shallow(<AddFeedForm {...props} />);
     if (props.isOpen) {
       const renderForm = wrapper.find('Formik').prop('render');
       renderOutput = shallow(<CallRenderFunction fn={renderForm} />);
     }
-  }
-
-  function mountRender() {
-    wrapper = mount(<AddFeedForm {...props} />);
   }
 
   beforeEach(() => {
@@ -32,10 +28,11 @@ describe('AddFeedForm', () => {
       handleSubmit: noop,
       isOpen: false,
       isSubmitting: false,
-      onClose: noop,
+      onClose: jest.fn(),
+      onSubmit: jest.fn(),
       values: { url: '' },
     };
-    shallowRender();
+    render();
   });
 
   test('it renders nothing by default', () => {
@@ -45,8 +42,7 @@ describe('AddFeedForm', () => {
   describe('when open', () => {
     beforeEach(() => {
       props.isOpen = true;
-      props.onClose = jest.fn();
-      shallowRender();
+      render();
     });
 
     test('it renders a form inside a modal', () => {
@@ -70,7 +66,7 @@ describe('AddFeedForm', () => {
     describe('when isSubmitting prop is true', () => {
       beforeEach(() => {
         props.isSubmitting = true;
-        shallowRender();
+        render();
       });
 
       test('it disables the text input and the buttons', () => {
@@ -88,7 +84,7 @@ describe('AddFeedForm', () => {
     describe('with errors', () => {
       beforeEach(() => {
         props.errors = { url: 'URL is invalid' };
-        shallowRender();
+        render();
       });
 
       test('it renders an autofocused alert', () => {
@@ -103,6 +99,42 @@ describe('AddFeedForm', () => {
         expect(input).toHaveClassName('is-invalid');
         expect(input).toHaveProp('aria-invalid', true);
         expect(errorMessage).toHaveText(props.errors.url);
+      });
+    });
+
+    describe('when filling out the form', () => {
+      function getInput() {
+        return wrapper.find('input');
+      }
+
+      function renderForm() {
+        const form = shallow(<AddFeedForm {...props} />).find('Modal').childAt(0).get(0);
+        wrapper = mount(<div>{form}</div>);
+      }
+
+      beforeEach(() => {
+        delete props.handleChange;
+        delete props.handleSubmit;
+        delete props.values;
+        renderForm();
+        const input = getInput();
+        input.simulate('change', {
+          target: { value: 'foobar', name: input.prop('name') },
+        });
+      });
+
+      test('it updates input value', () => {
+        expect(getInput()).toHaveProp('value', 'foobar');
+      });
+
+      describe('when submitting the form', () => {
+        beforeEach(() => {
+          wrapper.find('form').simulate('submit');
+        });
+
+        test('it invokes onSubmit prop with input value', () => {
+          expect(props.onSubmit).toHaveBeenCalledWith('foobar');
+        });
       });
     });
   });
