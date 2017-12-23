@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Post it renders a post title and description 1`] = `
+<article>
+  <h3>
+    <a
+      href="/foo"
+      rel="noopener"
+      target="_blank"
+    >
+      Foo
+    </a>
+  </h3>
+  <div
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<p>Foo!</p>",
+      }
+    }
+  />
+</article>
+`;

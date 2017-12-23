@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FeedPage it renders a page with a list of posts 1`] = `
+<section>
+  <h2>
+    Foo Bar
+  </h2>
+  <ListGroup
+    tag="ul"
+  >
+    <ListGroupItem
+      key="/foo"
+      tag="li"
+    >
+      <Post
+        post={
+          Object {
+            "link": "/foo",
+            "title": "Foo",
+          }
+        }
+      />
+    </ListGroupItem>
+    <ListGroupItem
+      key="/bar"
+      tag="li"
+    >
+      <Post
+        post={
+          Object {
+            "link": "/bar",
+            "title": "Bar",
+          }
+        }
+      />
+    </ListGroupItem>
+  </ListGroup>
+</section>
+`;
